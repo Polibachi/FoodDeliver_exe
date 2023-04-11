@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Origin": true,
   "scripts": {
     "start": "cd full > node index.js",
     "start:dev": "nodemon index.js",
@@ -14,12 +16,14 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
     "react": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "reactdom": "^2.0.0"
   }
 }

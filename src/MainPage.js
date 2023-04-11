@@ -4,28 +4,24 @@ function MainPage() {
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-      <title>�������� ��</title>
+      <title>хуйЗалупа</title>
       <link rel="stylesheet" href="main.css" />
       <header>
-        <div id="logo" onclick="slowScroll('#top')">
+        <div id="logo" onClick="slowScroll('#top')">
           <span>Food delivery.exe</span>
         </div>
         <div style={{ textAlign: "right" }} id="about">
           <a href="#" title="�����" onclick="slowScroll('#main')">
             ��������
           </a>
-          <a href="#" onclick="slowScroll('#guide')" title="����">
+          <a href="#" onClick="slowScroll('#guide')" title="����">
             ��� ���
           </a>
-          <a
-            href="/register"
-            onclick="slowScroll('#contacts')"
-            title="��������"
-          >
-            ��������
+          <a href="/login" onclick="slowScroll('#contacts')" title="Login">
+            Лохін
           </a>
-          <a href="#" onclick="slowScroll('#faq')" title="�������">
-            FAQ
+          <a href="/register" onclick="slowScroll('#faq')" title="�������">
+            Register
           </a>
           <a href="#" onclick="testt()">
             �������
@@ -34,7 +30,7 @@ function MainPage() {
       </header>
       <div id="top">
         <h1>Food delivery.exe</h1>
-        <h3>�������� �����</h3>
+        <h3>Доставим задоволення</h3>
       </div>
       <div id="main">
         <style

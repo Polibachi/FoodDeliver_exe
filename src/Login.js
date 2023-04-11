@@ -1,21 +1,58 @@
+import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { fetchUserData, isLoggedIn } from "./Authorise.js";
+import { useForm } from "react-hook-form";
+import TextField from "@mui/material/TextField/TextField.js";
+import { AuthContext } from "./Context.js";
+import Button from "../node_modules/@mui/material/Button/Button.js";
+
 function Login() {
+  const isAuth = useSelector(isLoggedIn);
+  const dispatch = useDispatch();
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isValid }
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  });
+
+  const onSubmit = values => {
+    console.log(values);
+    dispatch(fetchUserData(values));
+  };
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
+
   return (
-    <div className="App">
-      <form action="/" method="post">
-        <label>
-          name:
-          <input type="text" name="name" />
-        </label>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} action="/" method="post">
+        <TextField
+          type="email"
+          label="email"
+          error={Boolean(errors.email?.message)}
+          helperText={errors.email?.message}
+          {...register("email", { required: "enter email" })}
+        />
+        <TextField
+          label="password"
+          error={Boolean(errors.password?.message)}
+          helperText={errors.password?.message}
+          {...register("password", { required: "enter password" })}
+        />
+
         <br />
-        <label>
-          password:
-          <input type="text" name="password" />
-        </label>
-        <br />
-        <button> click </button>
+        <button type="submit"> click </button>
       </form>
-    </div>
+    </>
   );
 }
-
 export default Login;

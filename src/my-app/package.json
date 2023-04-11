@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Origin": true,
   "scripts": {
     "start": "react-scripts start",
     "start:dev": "nodemon index.js",
