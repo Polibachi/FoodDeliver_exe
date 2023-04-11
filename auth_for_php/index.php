@@ -8,8 +8,8 @@
  <body>
 	<div class="container mt-4">
     <?php
-    if($_COOKIE['user'] ==''):
-      ?>
+      if($_COOKIE['user']==''):
+     ?>
 	 <div class="row">
      <div class="col">
        <h1>форма рєстрації</h1>
@@ -28,10 +28,11 @@
     		<button class="btn btn-succes" type="submit">Ввійти</button>
     	 </form>
      </div>
-   <?php else:?>
-     <p>Привіт <?=$_COOKIE['user']?>.Щоб вийти нажміть <a href="/exit.php">тут</a></p>
-   <?php endif;?>
+    <?php else: ?>
+      <p>Привіт <?=$_COOKIE['user']?>.Вийти <a href="/exit.php">тут</a></p>
+   <?php endif; ?>
    </div>
 	</div>
+  <a href="/menu.php">Меню</a>
  </body>
  </html>
