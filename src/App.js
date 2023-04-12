@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import MainPage from "./MainPage.js";
+import { MainPage } from "./MainPage.js";
 import Register from "./Register.js";
 import Login from "./Login.js";
 import Test from "./Test.js";
@@ -23,7 +23,6 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );

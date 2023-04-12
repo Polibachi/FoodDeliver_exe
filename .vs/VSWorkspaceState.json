@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\src"
+    "\\src",
+    "\\src\\my-app"
   ],
-  "SelectedNode": "\\src\\Register.js",
   "PreviewInSolutionExplorer": false
 }
