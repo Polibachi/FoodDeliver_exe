@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import multer from "multer";
 
 import mongoose from "mongoose";
 
@@ -18,27 +19,36 @@ mongoose
   .then(() => console.log("db is ok"))
   .catch(err => console.log("db is pizdec", err));
 
-/*
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');*/
 const app = express();
-/*app.use('/path', express.static(path.join(__dirname)));
-app.use(bodyParser.urlencoded({ extended: false }));*/
+
+const storage = multer.diskStorage({
+  destination: (_, __, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (_, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage });
 
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
 app.post("/register", registerValidation, register);
 app.post("/login", loginValidation, login);
 app.get("/me", checkAuth, getMe);
-app.post("/posts", checkAuth, postCreateValidation, postManager.create);
-app.get("/posts/:id", postManager.getOne);
-app.get("/test/:xui/", (req, res) => {
-  console.log(req.params);
-  console.log(req.query);
-  res.send(index.html.body);
+
+app.post("/upload", upload.single("image"), (req, res) => {
+  res.json({
+    url: "/uploads/${req.file.originalname}"
+  });
 });
+
+app.post("/posts/create", checkAuth, postCreateValidation, postManager.create);
+app.get("/posts/:id", postManager.getOne);
+app.get("/posts", postManager.getAll);
 
 app.listen(process.env.PORT || 4444, err => {
   if (err) {

@@ -1,4 +1,11 @@
-function MainPage() {
+import * as React from "react";
+import axios from "./axios.js";
+
+export const MainPage = () => {
+  /*  React.useEffect(() => {
+    axios.get("/posts");
+  }, []);*/
+
   return (
     <div>
       <meta charSet="UTF-8" />
@@ -14,8 +21,8 @@ function MainPage() {
           <a href="#" title="�����" onclick="slowScroll('#main')">
             ��������
           </a>
-          <a href="#" onClick="slowScroll('#guide')" title="����">
-            ��� ���
+          <a href="/posts" onClick="slowScroll('#guide')" title="����">
+            katalog
           </a>
           <a href="/login" onclick="slowScroll('#contacts')" title="Login">
             Лохін
@@ -174,6 +181,4 @@ function MainPage() {
       </div>
     </div>
   );
-}
-
-export default MainPage;
+};

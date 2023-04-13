@@ -23,9 +23,13 @@ function Login() {
     }
   });
 
-  const onSubmit = values => {
-    console.log(values);
-    dispatch(fetchUserData(values));
+  const onSubmit = async values => {
+    const data = await dispatch(fetchUserData(values));
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    } else {
+      alert("ne vdalos avtorizuvatis");
+    }
   };
 
   if (isAuth) {
