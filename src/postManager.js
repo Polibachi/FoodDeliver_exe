@@ -1,14 +1,29 @@
 import postModel from "./postModel.js";
 console.log("debug1");
+export const getLastTags = async (req, res) => {
+  try {
+    const posts = await postModel.find().limit(5);
+
+    const tags = posts.map(obj => obj.tags);
+    res.json(tags);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "ne vdalos vernuti tags"
+    });
+  }
+};
 
 export const create = async (req, res) => {
   try {
-    console.log(req.body.userId);
+    console.log(req.body);
     const doc = new postModel({
       title: req.body.title,
       text: req.body.text,
       tags: req.body.tags,
-      imageUrl: req.body.imageUrl
+      imageUrl: req.body.imageUrl,
+      price: req.body.price,
+      vaha: req.body.vaha
     });
     const post = await doc.save();
     res.json(post);
@@ -54,5 +69,6 @@ export const getOne = async (req, res) => {
 export const getAll = async (req, res) => {
   console.log("debug3");
   const posts = await postModel.find();
+  //console.log(posts);
   res.json(posts);
 };

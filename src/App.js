@@ -4,12 +4,16 @@ import { MainPage } from "./MainPage.js";
 import Register from "./Register.js";
 import Login from "./Login.js";
 import Test from "./Test.js";
+import { PostSkeleton } from "./Skeleton.jsx";
+import { Post } from "./Post.js";
+
 import Container from "../node_modules/@mui/material/Container/Container.js";
 import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "./Context.js";
 import { Provider, useSelector, useDispatch } from "react-redux";
 import { createStore } from "redux";
 import store from "./Store.js";
+import Korzina from "./Korzina.js";
 
 function App() {
   //const [isAuth, setIsAuth] = useState(false);
@@ -23,6 +27,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/posts" element={<Test />} />
+        <Route path="/korzina" element={<Korzina />} />
       </Routes>
     </>
   );

@@ -2,10 +2,6 @@ import * as React from "react";
 import axios from "./axios.js";
 
 export const MainPage = () => {
-  /*  React.useEffect(() => {
-    axios.get("/posts");
-  }, []);*/
-
   return (
     <div>
       <meta charSet="UTF-8" />
@@ -30,9 +26,7 @@ export const MainPage = () => {
           <a href="/register" onclick="slowScroll('#faq')" title="�������">
             Register
           </a>
-          <a href="#" onclick="testt()">
-            �������
-          </a>
+          <a href="/korzina">Korzina</a>
         </div>
       </header>
       <div id="top">

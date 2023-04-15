@@ -12,8 +12,8 @@ const PostSchema = new mongoose.Schema(
       required: true
     },
     tags: {
-      type: String,
-      default: []
+      type: Array,
+      required: true
     },
     viewsCount: {
       type: Number,
@@ -21,6 +21,14 @@ const PostSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    vaha: {
+      type: Number,
       required: true
     }
   },

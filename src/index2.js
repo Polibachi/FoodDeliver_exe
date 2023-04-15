@@ -49,6 +49,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
 app.post("/posts/create", checkAuth, postCreateValidation, postManager.create);
 app.get("/posts/:id", postManager.getOne);
 app.get("/posts", postManager.getAll);
+app.get("/tags", postManager.getLastTags);
 
 app.listen(process.env.PORT || 4444, err => {
   if (err) {
