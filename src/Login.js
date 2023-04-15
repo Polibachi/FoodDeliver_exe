@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField/TextField.js";
 import { AuthContext } from "./Context.js";
 import Button from "../node_modules/@mui/material/Button/Button.js";
+import "./main.css";
+import "./log.css";
 
 function Login() {
   const isAuth = useSelector(isLoggedIn);
@@ -37,26 +39,42 @@ function Login() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} action="/" method="post">
-        <TextField
-          type="email"
-          label="email"
-          error={Boolean(errors.email?.message)}
-          helperText={errors.email?.message}
-          {...register("email", { required: "enter email" })}
-        />
-        <TextField
-          label="password"
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          {...register("password", { required: "enter password" })}
-        />
+    <div className="container">
+      <form
+        id="form1"
+        onSubmit={handleSubmit(onSubmit)}
+        action="/"
+        method="post"
+      >
+        <div className="form-control">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            {...register("email", { required: "enter email" })}
+          />
+          {errors.email && (
+            <span className="error-message">{errors.email.message}</span>
+          )}
+        </div>
 
-        <br />
-        <button type="submit"> click </button>
+        <div className="form-control">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            {...register("password", { required: "enter password" })}
+          />
+          {errors.password && (
+            <span className="error-message">{errors.password.message}</span>
+          )}
+        </div>
+
+        <button style={{ marginLeft: "45px" }} type="submit">
+          Submit
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 export default Login;
