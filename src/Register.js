@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField/TextField.js";
 import { AuthContext } from "./Context.js";
 import Button from "../node_modules/@mui/material/Button/Button.js";
+import "./log.css";
 
 function Register() {
   const isAuth = useSelector(isLoggedIn);
@@ -35,32 +36,53 @@ function Register() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} action="/" method="post">
-        <TextField
-          type="email"
-          label="email"
-          error={Boolean(errors.email?.message)}
-          helperText={errors.email?.message}
-          {...register("email", { required: "enter email" })}
-        />
-        <TextField
-          label="fullname"
-          error={Boolean(errors.fullname?.message)}
-          helperText={errors.fullname?.message}
-          {...register("fullname", { required: "enter name" })}
-        />
-        <TextField
-          label="password"
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          {...register("password", { required: "enter password" })}
-        />
+    <div className="container">
+      <form id="form1" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-control">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            {...register("email", { required: "Enter email" })}
+          />
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
+        </div>
 
-        <br />
-        <button type="submit"> click </button>
+        <div className="form-control">
+          <label htmlFor="fullname">Full Name</label>
+          <input
+            type="fullname"
+            id="fullname"
+            {...register("fullname", { required: "Enter full name" })}
+          />
+          {errors.fullname && (
+            <span className="error">{errors.fullname.message}</span>
+          )}
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            {...register("password", { required: "Enter password" })}
+          />
+          {errors.password && (
+            <span className="error">{errors.password.message}</span>
+          )}
+        </div>
+
+        <button
+          style={{ marginLeft: "41px" }}
+          type="submit"
+          disabled={!isValid}
+        >
+          Register
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 

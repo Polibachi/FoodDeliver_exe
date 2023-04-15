@@ -31,9 +31,11 @@ header {
   
 }
 
+
 header #logo {
-  color: #fff;
+  color: black;
   cursor: pointer;
+  
 }
 
 header #logo span {
@@ -368,3 +370,4 @@ h1, h2, h3, h4, h5 {
   font-size: 0.95em;
   margin-bottom: 40px;
 }
+
