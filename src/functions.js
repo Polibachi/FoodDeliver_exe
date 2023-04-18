@@ -83,10 +83,8 @@ export const login = async (req, res) => {
 export const getMe = async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId);
-    //console.log(UserModel.findOne(req.ObjectId));
 
     if (!user) {
-      //console.log(user);
       return res.status(404).json({
         message: "no such user"
       });

@@ -8,7 +8,7 @@ import CommentIcon from "./node_modules/@mui/icons-material/ChatBubbleOutlineOut
 import { useDispatch, useSelector } from "react-redux";
 import { UserInfo } from "./UserInfo.jsx";
 import { PostSkeleton } from "./Skeleton.jsx";
-import { addItem } from "./KorzSlice.js";
+import { addItem } from "./KorzSlice.ts";
 
 export const Post = ({
   _id,
@@ -38,7 +38,8 @@ export const Post = ({
       price,
       imageUrl,
       type: activeType,
-      size: activeSize
+      size: activeSize,
+      vaha
     };
     dispatch(addItem(item));
   };

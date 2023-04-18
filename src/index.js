@@ -9,7 +9,7 @@ import Register from "./Register.js";
 import Login from "./Login.js";
 //import { Test } from "./Test.js";
 import { Provider } from "react-redux";
-import store from "./Store.js";
+import store from "./Store.ts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

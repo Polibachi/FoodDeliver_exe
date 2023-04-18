@@ -3,10 +3,8 @@ import axios from "./axios.js";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "./Slice.js";
-import store from "./Store.js";
+import { addItem, removeItem, minusItem, clearItem } from "./KorzSlice.ts";
 
-import Tabs from "./node_modules/@mui/material/Tabs/Tabs.js";
-import Tab from "./node_modules/@mui/material/Tab/Tab.js";
 import Grid from "./node_modules/@mui/material/Grid/Grid.js";
 
 import { Post } from "./Post.js";
@@ -17,10 +15,13 @@ function Test() {
   const { items, totalPrice } = useSelector(state => state.cartReduser);
   const dispatch = useDispatch();
   const { posts } = useSelector(state => state.posts);
+
+  const clear = () => {
+    dispatch(clearItem());
+  };
   const [searchQuerry, setSearchQuerry] = useState("");
   const isPostLoading = posts.status === "loading";
   const isMounted = React.useRef(false);
-  let a = 0;
   const searchedPosts = useMemo(() => {
     if (searchQuerry & (posts.status != "loading")) {
       return posts.items.filter(posts =>
@@ -68,6 +69,12 @@ function Test() {
         <div />
         <div>
           {items.length},{totalPrice}
+        </div>
+        <div>
+          <button onClick={clear}>Очистити корзину</button>
+        </div>
+        <div>
+          <a href="/">Повернутися</a>
         </div>
       </div>
     );

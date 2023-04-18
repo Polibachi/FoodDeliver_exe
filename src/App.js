@@ -12,15 +12,12 @@ import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "./Context.js";
 import { Provider, useSelector, useDispatch } from "react-redux";
 import { createStore } from "redux";
-import store from "./Store.js";
-import Korzina from "./Korzina.js";
+import store from "./Store.ts";
+//import Korzina from "./Korzina.js";
+import GetMe from "./GetMe.js";
+import Cart from "./Cart.tsx";
 
 function App() {
-  //const [isAuth, setIsAuth] = useState(false);
-  //const [AppValue, setAppValue] = useState("");
-
-  //console.log(isAuth);
-
   return (
     <>
       <Routes>
@@ -28,7 +25,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<Test />} />
-        <Route path="/korzina" element={<Korzina />} />
+        <Route path="/korzina" element={<Cart />} />
+        <Route path="/me" element={<GetMe />} />
       </Routes>
     </>
   );
