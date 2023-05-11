@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import IconButton from "./node_modules/@mui/material/IconButton/IconButton.js";
-import DeleteIcon from "./node_modules/@mui/icons-material/Clear.js";
-import EditIcon from "./node_modules/@mui/icons-material/Edit.js";
-import EyeIcon from "./node_modules/@mui/icons-material/RemoveRedEyeOutlined.js";
-import CommentIcon from "./node_modules/@mui/icons-material/ChatBubbleOutlineOutlined.js";
+import IconButton from "@mui/material/IconButton/IconButton.js";
+import DeleteIcon from "@mui/icons-material/Clear.js";
+import EditIcon from "@mui/icons-material/Edit.js";
+import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined.js";
+import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined.js";
 import { useDispatch, useSelector } from "react-redux";
 import { UserInfo } from "./UserInfo.jsx";
 import { PostSkeleton } from "./Skeleton.jsx";
@@ -43,9 +43,9 @@ export const Post = ({
     };
     dispatch(addItem(item));
   };
-  const onClickRemove = () => {};
-
+  //React.useEffect(() => {}, []);
   if (_id) {
+    console.log(123);
     if (search) {
       if (title.toLowerCase().includes(search.toLowerCase())) {
         return (
@@ -69,6 +69,7 @@ export const Post = ({
         return <></>;
       }
     } else {
+      console.log(321);
       return (
         <>
           <div>{title}</div>

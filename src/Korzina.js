@@ -29,6 +29,7 @@ function Korzina() {
       </button>
       Корзина
       <span>Очистити корзину</span>
+      <a>Оформити замовлення</a>
       <span>
         {" "}
         Всього елементів: <b>{items.length} шт.</b>{" "}

@@ -9,7 +9,7 @@ import { postCreateValidation, registerValidation } from "./auth.js";
 import { loginValidation } from "./auth.js";
 import checkAuth from "./checkAuth.js";
 
-import { register, login, getMe } from "./functions.js";
+import { register, login, getMe, edit } from "./functions.js";
 import * as postManager from "./postManager.js";
 
 mongoose
@@ -38,6 +38,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.post("/register", registerValidation, register);
 app.post("/login", loginValidation, login);
+app.patch("/edit", loginValidation, edit);
 app.get("/me", checkAuth, getMe);
 
 app.post("/upload", upload.single("image"), (req, res) => {

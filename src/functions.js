@@ -18,7 +18,8 @@ export const register = async (req, res) => {
     const doc = new UserModel({
       email: req.body.email,
       fullname: req.body.fullname,
-      avatarUrl: req.body.avatarUrl,
+      phone: req.body.phone || "00000",
+      avatarUrl: req.body.avatarUrl || "",
       passwordHash: hash
     });
 
@@ -72,6 +73,28 @@ export const login = async (req, res) => {
     );
 
     res.json({ user, token });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "shos pishlo ne tak"
+    });
+  }
+};
+
+export const edit = async (req, res) => {
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { email: req.body.email },
+      {
+        avatarUrl: req.body.avatarUrl,
+        phone: req.body.phone,
+        fullname: req.body.fullname
+      }
+    );
+
+    res.json({
+      succes: true
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({

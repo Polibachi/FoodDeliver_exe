@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\src",
-    "\\src\\my-app"
+    "\\src"
   ],
+  "SelectedNode": "\\src\\GetMe.js",
   "PreviewInSolutionExplorer": false
 }

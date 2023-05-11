@@ -10,6 +10,7 @@ import "./log.css";
 
 function Register() {
   const isAuth = useSelector(isLoggedIn);
+
   console.log(isAuth);
   const dispatch = useDispatch();
 
@@ -28,11 +29,15 @@ function Register() {
 
   const onSubmit = values => {
     console.log(values);
-    dispatch(fetchUserDataReg(values));
+    const data = dispatch(fetchUserDataReg(values));
+
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    }
   };
 
   if (isAuth) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   return (

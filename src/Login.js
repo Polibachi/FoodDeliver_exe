@@ -12,6 +12,13 @@ import "./log.css";
 function Login() {
   const isAuth = useSelector(isLoggedIn);
   const dispatch = useDispatch();
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/octet-stream",
+      Authorization: localStorage.getItem("token")
+    }
+  };
 
   const {
     register,
@@ -29,6 +36,12 @@ function Login() {
     const data = await dispatch(fetchUserData(values));
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
+      fetch("http://localhost:4444/me", options)
+        .then(response => response.json())
+        .then(response =>
+          localStorage.setItem("user", JSON.stringify(response.user))
+        )
+        .catch(err => console.error(err));
     } else {
       alert("ne vdalos avtorizuvatis");
     }
@@ -57,7 +70,6 @@ function Login() {
             <span className="error-message">{errors.email.message}</span>
           )}
         </div>
-
         <div className="form-control">
           <label htmlFor="password">Password</label>
           <input
@@ -69,10 +81,13 @@ function Login() {
             <span className="error-message">{errors.password.message}</span>
           )}
         </div>
-
         <button style={{ marginLeft: "45px" }} type="submit">
           Submit
-        </button>
+        </button>{" "}
+        <br />
+        <div>
+          <a href="/register">Зареєструватись натомість</a>
+        </div>
       </form>
     </div>
   );

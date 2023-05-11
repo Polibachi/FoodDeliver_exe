@@ -1,8 +1,32 @@
 import * as React from "react";
-import axios from "./axios.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData, isLoggedIn } from "./Authorise.js";
 
 export const MainPage = () => {
+  //const isAuth = useSelector(isLoggedIn);
   const isTok = Boolean(localStorage.getItem("token"));
+  const dispatch = useDispatch();
+  const log = async values => {
+    const data = await dispatch(fetchUserData(values));
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    }
+  };
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/octet-stream",
+      Authorization: localStorage.getItem("token")
+    }
+  };
+  fetch("http://localhost:4444/me", options)
+    .then(response => response.json())
+    .then(response =>
+      localStorage.setItem("user", JSON.stringify(response.user))
+    )
+    .catch(err => console.error(err));
+
+  const uss = JSON.parse(localStorage.getItem("user"));
   function logUI() {
     if (isTok) {
       return (
@@ -197,6 +221,20 @@ export const MainPage = () => {
             Lorem чи шо там воно,<br />
             Lorem чи шо там воно,
           </p>
+          <button
+            style={{
+              backgroundColor: "#ddd",
+              color: "black",
+              fontFamily: "'Oswald', sans-serif",
+              padding: "20px 60px",
+              border: "none",
+              borderRadius: "4px",
+              fontSize: "30px",
+              cursor: "pointer"
+            }}
+          >
+            <a href="#contacts">Top</a>
+          </button>
         </div>
       </div>
     </div>

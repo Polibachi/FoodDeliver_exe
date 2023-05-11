@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "./Slice.js";
 import { addItem, removeItem, minusItem, clearItem } from "./KorzSlice.ts";
 
-import Grid from "./node_modules/@mui/material/Grid/Grid.js";
+import Grid from "@mui/material/Grid/Grid.js";
 
 import { Post } from "./Post.js";
 import { useState } from "react";
@@ -15,7 +15,7 @@ function Test() {
   const { items, totalPrice } = useSelector(state => state.cartReduser);
   const dispatch = useDispatch();
   const { posts } = useSelector(state => state.posts);
-
+  const uss = JSON.parse(localStorage.getItem("user"));
   const clear = () => {
     dispatch(clearItem());
   };
@@ -29,6 +29,7 @@ function Test() {
       );
     } else return posts;
   });
+
   React.useEffect(() => {
     dispatch(fetchPosts());
   }, []);
@@ -45,39 +46,41 @@ function Test() {
     [items]
   );
   if (posts) {
-    return (
-      <div key={posts.items.title}>
-        <input
-          placeholder="Пошук"
-          value={searchQuerry}
-          onChange={e => setSearchQuerry(e.target.value)}
-        />
-        <Grid xs={8} item>
-          {posts.items.map((obj, index) => (
-            <Post
-              _id={obj._id}
-              title={obj.title}
-              imageUrl={obj.imageUrl}
-              text={obj.text}
-              tags={obj.tags}
-              search={searchQuerry}
-              price={obj.price}
-              vaha={obj.vaha}
-            />
-          ))}
-        </Grid>
-        <div />
-        <div>
-          {items.length},{totalPrice}
+    if (uss.__v == 0) {
+      return (
+        <div key={posts.items.title}>
+          <input
+            placeholder="Пошук"
+            value={searchQuerry}
+            onChange={e => setSearchQuerry(e.target.value)}
+          />
+          <Grid xs={8} item>
+            {posts.items.map((obj, index) => (
+              <Post
+                _id={obj._id}
+                title={obj.title}
+                imageUrl={obj.imageUrl}
+                text={obj.text}
+                tags={obj.tags}
+                search={searchQuerry}
+                price={obj.price}
+                vaha={obj.vaha}
+              />
+            ))}
+          </Grid>
+          <div />
+          <div>
+            {items.length},{totalPrice}
+          </div>
+          <div>
+            <button onClick={clear}>Очистити корзину</button>
+          </div>
+          <div>
+            <a href="/">Повернутися</a>
+          </div>
         </div>
-        <div>
-          <button onClick={clear}>Очистити корзину</button>
-        </div>
-        <div>
-          <a href="/">Повернутися</a>
-        </div>
-      </div>
-    );
+      );
+    }
   }
   return (
     <>

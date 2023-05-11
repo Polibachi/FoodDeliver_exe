@@ -29,6 +29,7 @@ export const create = async (req, res) => {
     res.json(post);
   } catch (err) {
     console.log(err);
+    console.log("ne vdalos stvoriti stattiu");
     res.status(500).json({
       message: "ne vdalos stvoriti stattiu"
     });

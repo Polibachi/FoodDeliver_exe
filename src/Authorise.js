@@ -1,7 +1,5 @@
-import { Dispatch, AnyAction, PayloadAction } from "redux";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../node_modules/axios/lib/axios.js";
-import { create } from "./my-app/postManager.js";
 
 export const fetchUserData = createAsyncThunk(
   "/fetchUserData",
